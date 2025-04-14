@@ -1,0 +1,13 @@
+<div *ngIf="message" class="full-message">
+  <div class="message-data">
+    <small class="phone-number">{{message.phoneNumber | phoneFormat}}</small>
+    <small class="created-date">{{message.createdAt | date:'EEEE, MMMM d, y, h:mm:ss' :'+0000'}} UTC</small>
+    <br>
+    <mat-card appearance="outlined" class="message-text">
+      <mat-card-content>
+        {{message.text}}
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <small class="text-counter" *ngIf="message">{{ message.text.length }}/250</small>
+</div>

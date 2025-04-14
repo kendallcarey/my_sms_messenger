@@ -1,0 +1,11 @@
+<mat-card appearance="outlined" class="message-history">
+  <mat-card-header>
+    <h2>
+      Message History
+      <span>({{count()}})</span>
+    </h2>
+  </mat-card-header>
+  <mat-card-content>
+    <app-message-list [messageList]="messageList()"></app-message-list>
+  </mat-card-content>
+</mat-card>

@@ -1,0 +1,37 @@
+.message-form {
+  //min-width: 150px;
+  //max-width: 45%;
+  width: 95%;
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.message-full-width {
+  width: 100%;
+}
+
+mat-card {
+  background-color: white;
+  border: none;
+  box-shadow: 2px 2px 2px lightgrey;
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
+#clear-button {
+  color: black;
+  text-decoration: underline;
+  float: left;
+}
+
+#submit-button {
+  background-color: black;
+  float: right;
+}
+
+.text-counter {
+  color: #898989;
+  float: right;
+  margin-top: -10px;
+}

@@ -1,0 +1,7 @@
+<mat-card appearance="outlined">
+  <mat-card-content class="message-list" #scrollableDiv>
+    @for (message of messageList; track message) {
+      <app-message [message]="message"></app-message>
+    }
+  </mat-card-content>
+</mat-card>
