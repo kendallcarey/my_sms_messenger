@@ -1,14 +1,17 @@
 import {Injectable, inject, ChangeDetectorRef} from '@angular/core';
-import {HttpClient, HttpErrorResponse, HttpHeaders} from '@angular/common/http';
+import {HttpClient, HttpErrorResponse, HttpHeaders, HttpParams} from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import {catchError} from 'rxjs/internal/operators/catchError';
 import {throwError} from 'rxjs';
 import {Message} from '../components/interfaces/message';
+import {SessionService} from './session.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MessageApiService {
+  sessionService = inject(SessionService);
+
   private url = `${environment.apiUrl}/messages`;
   http = inject(HttpClient);
   httpOptions = {
@@ -20,12 +23,13 @@ export class MessageApiService {
   constructor() {}
 
   getAllMessages() {
-    return this.http.get<Message[]>(`${this.url}`)
+    let params = new HttpParams().set("sessionId", this.sessionService.sessionId())
+    return this.http.get<Message[]>(`${this.url}`, {params: params})
   }
 
-  createMessage(message: {phoneNumber: string, text: string}) {
+  createMessage(message: {phoneNumber: string, text: string, sessionId: string}) {
     let createUrl = `${this.url}`
-    return this.http.post<Message>(createUrl, {message: message}, this.httpOptions)
+    return this.http.post<Message>(createUrl, message, this.httpOptions)
       .pipe(
         catchError((error) => {
           console.error('An error occurred during createMessage', error);

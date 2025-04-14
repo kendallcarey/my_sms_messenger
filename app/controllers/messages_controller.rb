@@ -3,7 +3,11 @@ class MessagesController < ActionController::API
 
   # GET /messages or /messages.json
   def index
-    @messages = Message.all
+    if message_params[:session_id]
+      @messages = Message.where(session_id: message_params[:session_id])
+    else
+      @messages = Message.all
+    end
     render json: @messages
   end
 
@@ -72,6 +76,6 @@ class MessagesController < ActionController::API
     # Only allow a list of trusted parameters through.
     def message_params
       params.deep_transform_keys!(&:underscore)
-      params.expect(message: [ :phone_number, :text ])
+      params.permit(:phone_number, :text, :session_id )
     end
 end
