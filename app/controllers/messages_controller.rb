@@ -35,7 +35,7 @@ class MessagesController < ActionController::API
         }, status: :ok
       end
     else
-      @errors = @user.errors.full_messages
+      @errors = @message.errors.full_messages
       render json: @errors, status: :unprocessable_entity
     end
   end
