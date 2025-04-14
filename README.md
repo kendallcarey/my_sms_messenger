@@ -16,3 +16,4 @@ TWILIO_ACCOUNT_SID
 TWILIO_AUTH_TOKEN
 ```
 
+<img width="1377" alt="Image" src="https://github.com/user-attachments/assets/ab4db587-b72c-4d68-af80-aa2736498c7f" />
