@@ -1,5 +1,5 @@
 class MessagesController < ActionController::API
-  before_action :set_message, only: %i[ show edit ]
+  # before_action :set_message, only: %i[ show edit ]
 
   # GET /messages or /messages.json
   def index
@@ -65,9 +65,9 @@ class MessagesController < ActionController::API
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_message
-      @message = Message.find(params.expect(:id))
-    end
+    # def set_message
+    #   @message = Message.find(params.expect(:id))
+    # end
 
     # Only allow a list of trusted parameters through.
     def message_params
