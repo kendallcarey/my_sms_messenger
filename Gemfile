@@ -51,12 +51,6 @@ group :development, :test do
   gem 'dotenv-rails'
 
   gem 'active_model_serializers'
-
-  gem 'devise'
-
-  gem 'devise-jwt'
-
-  gem 'jsonapi-serializer'
 end
 
 group :development do
