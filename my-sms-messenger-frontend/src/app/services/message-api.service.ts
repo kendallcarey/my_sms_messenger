@@ -5,29 +5,29 @@ import {catchError} from 'rxjs/internal/operators/catchError';
 import {throwError} from 'rxjs';
 import {Message} from '../components/interfaces/message';
 import {SessionService} from './session.service';
+import {AuthService} from './auth.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MessageApiService {
-  sessionService = inject(SessionService);
+  authService = inject(AuthService);
 
   private url = `${environment.apiUrl}/messages`;
   http = inject(HttpClient);
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type':  'application/json',
-      // Authorization: 'my-auth-token'
+      Authorization: 'Bearer ' + this.authService.auth_token()
     })
   };
   constructor() {}
 
   getAllMessages() {
-    let params = new HttpParams().set("sessionId", this.sessionService.sessionId())
-    return this.http.get<Message[]>(`${this.url}`, {params: params})
+    return this.http.get<Message[]>(`${this.url}`, this.httpOptions)
   }
 
-  createMessage(message: {phoneNumber: string, text: string, sessionId: string}) {
+  createMessage(message: {phoneNumber: string, text: string}) {
     let createUrl = `${this.url}`
     return this.http.post<Message>(createUrl, message, this.httpOptions)
       .pipe(

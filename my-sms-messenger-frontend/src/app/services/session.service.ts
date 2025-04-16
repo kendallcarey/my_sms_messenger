@@ -1,6 +1,9 @@
 import {inject, Injectable, signal} from '@angular/core';
 import {LocalStorageService} from './local-storage.service';
 import { v4 as uuidv4 } from 'uuid';
+import {Message} from '../components/interfaces/message';
+import {catchError} from 'rxjs/internal/operators/catchError';
+import {throwError} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'

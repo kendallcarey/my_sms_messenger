@@ -1,0 +1,17 @@
+.container {
+  text-align: center;
+}
+
+.login-form H2 {
+  text-align: center;
+}
+
+.login-form {
+  max-width: 600px;
+  background-color: white;
+  border: none;
+  margin: auto;
+  #submit-button {
+    background-color: black;
+  }
+}

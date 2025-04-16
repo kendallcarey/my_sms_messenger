@@ -1,32 +1,19 @@
-class MessagesController < ActionController::API
-  # before_action :set_message, only: %i[ show edit ]
+class MessagesController < ApplicationController
+  :require_authentication
 
-  # GET /messages or /messages.json
+  # GET /messages
   def index
-    if message_params[:session_id]
-      @messages = Message.where(session_id: message_params[:session_id])
+    if Current.user
+      @messages = Current.user.messages
     else
       @messages = Message.all
     end
     render json: @messages
   end
 
-  # # GET /messages/1 or /messages/1.json
-  # def show
-  # end
-
-  # # GET /messages/new
-  # def new
-  #   @message = Message.new
-  # end
-
-  # # GET /messages/1/edit
-  # def edit
-  # end
-
-  # POST /messages or /messages.json
+  # POST /messages
   def create
-    @message = Message.new(message_params)
+    @message = Current.user.messages.new(message_params)
 
     if @message.save
       @text_service = TwilioService.new.send_text(@message.phone_number, @message.text)
@@ -44,38 +31,11 @@ class MessagesController < ActionController::API
     end
   end
 
-  # PATCH/PUT /messages/1 or /messages/1.json
-  # def update
-  #   respond_to do |format|
-  #     if @message.update(message_params)
-  #       format.html { redirect_to @message, notice: "Message was successfully updated." }
-  #       format.json { render :show, status: :ok, location: @message }
-  #     else
-  #       format.html { render :edit, status: :unprocessable_entity }
-  #       format.json { render json: @message.errors, status: :unprocessable_entity }
-  #     end
-  #   end
-  # end
-
-  # DELETE /messages/1 or /messages/1.json
-  # def destroy
-  #   @message.destroy!
-  #
-  #   respond_to do |format|
-  #     format.html { redirect_to messages_path, status: :see_other, notice: "Message was successfully destroyed." }
-  #     format.json { head :no_content }
-  #   end
-  # end
-
   private
-    # Use callbacks to share common setup or constraints between actions.
-    # def set_message
-    #   @message = Message.find(params.expect(:id))
-    # end
 
     # Only allow a list of trusted parameters through.
     def message_params
       params.deep_transform_keys!(&:underscore)
-      params.permit(:phone_number, :text, :session_id )
+      params.permit(:phone_number, :text, :token )
     end
 end

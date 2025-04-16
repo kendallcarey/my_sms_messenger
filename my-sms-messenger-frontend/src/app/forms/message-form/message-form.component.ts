@@ -8,6 +8,7 @@ import {MatButtonModule} from '@angular/material/button';
 import {MessageApiService} from '../../services/message-api.service';
 import {MessageService} from '../../services/message.service';
 import {SessionService} from '../../services/session.service';
+import {AuthService} from '../../services/auth.service';
 
 @Component({
   selector: 'app-message-form',
@@ -27,7 +28,8 @@ import {SessionService} from '../../services/session.service';
 export class MessageFormComponent {
   messageApiService = inject(MessageApiService);
   messageService = inject(MessageService);
-  sessionService = inject(SessionService);
+  // sessionService = inject(SessionService);
+  authService = inject(AuthService);
   createMessageForm = new FormGroup({
     phoneNumber: new FormControl<string>(''),
     text: new FormControl<string>('')
@@ -40,8 +42,7 @@ export class MessageFormComponent {
     console.log("submit message!")
     let body = {
       phoneNumber: this.createMessageForm.value.phoneNumber ?? '',
-      text: this.createMessageForm.value.text ?? '',
-      sessionId: this.sessionService.sessionId() ?? ''
+      text: this.createMessageForm.value.text ?? ''
     }
 
     this.messageApiService.createMessage(body).subscribe({

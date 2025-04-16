@@ -5,7 +5,7 @@ import {MessageHistoryComponent} from './components/message-history/message-hist
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, MessageFormComponent, MessageHistoryComponent],
+  imports: [RouterOutlet],
   templateUrl: './app.component.html',
   standalone: true,
   styleUrl: './app.component.scss'

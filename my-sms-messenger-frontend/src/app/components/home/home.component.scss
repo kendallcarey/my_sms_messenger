@@ -1,0 +1,43 @@
+.container {
+  height: 100vh;
+  .title {
+    text-align: center;
+  }
+}
+
+.messenger-body {
+  width: 100%;
+  height: 90%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: stretch;
+  row-gap: 20px;
+
+  .message-form-component {
+    width: 45%;
+
+  }
+  .message-history-component {
+    width: 45%;
+  }
+}
+
+app-message-form {
+  display: flex;
+  justify-content: center;
+  width: 95%;
+  height: 95%;
+}
+
+app-message-history {
+  display: flex;
+  justify-content: center;
+  width: 95%;
+  height: 95%;
+}
+
+.logout-button {
+  float: right;
+}

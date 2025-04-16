@@ -1,0 +1,23 @@
+<div class="container">
+  <mat-card appearance="outlined" class="login-form">
+    <h2>Log Into My SMS Messenger</h2>
+    <mat-card-content>
+      <form [formGroup]="loginForm" (submit)="login()">
+        <label for="email-input">Email</label>
+        <br>
+        <mat-form-field appearance="outline" class="message-full-width">
+          <input matInput formControlName="email" id="email-input" email>
+        </mat-form-field>
+        <br>
+        <label for="password-input">password</label>
+        <br>
+        <mat-form-field appearance="outline" class="message-full-width">
+          <input matInput formControlName="password" id="password-input" type="password">
+        </mat-form-field>
+        <br>
+        <button mat-flat-button id="submit-button">Submit</button>
+      </form>
+      <button mat-button [routerLink]="['/auth/register']">Create User</button>
+    </mat-card-content>
+  </mat-card>
+</div>
