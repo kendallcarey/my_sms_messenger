@@ -50,7 +50,7 @@ group :development, :test do
 
   gem 'dotenv-rails'
 
-  gem 'active_model_serializers'
+  gem 'active_model_serializers', require: true
 end
 
 group :development do
@@ -63,3 +63,5 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
 end
+
+gem "dockerfile-rails", ">= 1.7", group: :development

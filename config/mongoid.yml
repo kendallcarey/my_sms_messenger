@@ -9,7 +9,7 @@ development:
       # Otherwise define the parameters separately.
       # This defines the name of the default database that Mongoid can connect to.
       # (required).
-      uri: mongodb+srv://<%= ENV["MONGO_DB_USERNAME"] %>:<%= ENV["MONGO_DB_PASSWORD"] %>@<%= ENV["MONGO_DB_CLUSTER"] %>.ciw0vmi.mongodb.net/<%= ENV["MONGO_DB_NAME"] %>?retryWrites=true&w=majority&appName=<%= ENV["MONGO_DB_CLUSTER"].titleize %>
+      uri: mongodb+srv://<%= ENV["MONGO_DB_USERNAME"] %>:<%= ENV["MONGO_DB_PASSWORD"] %>@<%= ENV["MONGO_DB_CLUSTER"] %>.ciw0vmi.mongodb.net/<%= ENV["MONGO_DB_NAME"] %>?retryWrites=true&w=majority&appName=<%= ENV["MONGO_DB_CLUSTER"] ? ENV["MONGO_DB_CLUSTER"].titleize : "" %>
 #      database: my_sms_messenger_development
       options:
         server_selection_timeout: 5
