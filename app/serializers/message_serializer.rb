@@ -1,4 +1,4 @@
-class MessageSerializer < ActiveModel::Serializer
+class MessageSerializer < ActiveModel::Serialization
   attributes :id, :text
   attribute :phone_number, key: :phoneNumber
   # attribute :session_id, key: :sessionId
